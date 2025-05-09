@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>André Silva Queiroz | Dev Visionário</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #00d4ff;
+      --secondary: #090e22;
+      --dark: #121212;
+      --light: #f8f9fa;
+      --gray: #2d2d39;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--secondary);
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--secondary), var(--dark));
+      padding: 2rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, rgba(0,0,0,0) 70%);
+      z-index: 0;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+      padding: 2rem 0;
+    }
+    
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--primary);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+      transition: transform 0.3s ease;
+    }
+    
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+    
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, var(--primary), #a8edea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+    
+    .tagline {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-links a {
+      color: var(--light);
+      font-size: 1.5rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    /* Seções */
+    section {
+      padding: 4rem 0;
+    }
+    
+    section:nth-child(even) {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-size: 2.2rem;
+      display: inline-block;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 3px;
+    }
+    
+    /* Projetos */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    
+    .project-card {
+      background: var(--gray);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+    }
+    
+    .project-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .project-content {
+      padding: 1.5rem;
+    }
+    
+    .project-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    
+    .project-content p {
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: var(--dark);
+    }
+    
+    .btn-primary:hover {
+      background: #00b4d8;
+      transform: translateY(-2px);
+    }
+    
+    .btn-outline {
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: rgba(0, 212, 255, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    /* Habilidades */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .skill-item {
+      background: var(--gray);
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .skill-item:hover {
+      transform: scale(1.05);
+    }
+    
+    .skill-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    /* Contato */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: var(--gray);
+      border: none;
+      border-radius: 5px;
+      color: var(--light);
+      font-family: inherit;
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      padding: 2rem 0;
+      text-align: center;
+    }
+    
+    .footer-text {
+      opacity: 0.7;
+    }
+    
+    /* Botões de contato */
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    
+    /* Responsivo */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-container { grid-template-columns: repeat(3, 1fr); }
+      .contact-buttons { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header>
+    <div class="container header-content">
+      <h1 class="fade-in delay-1">André Silva Queiroz</h1>
+      <p class="tagline fade-in delay-1">Visionário & Apaixonado por Tecnologia</p>
+      <p class="fade-in delay-2">Transformando ideias em código e automações inteligentes</p>
+      
+      <div class="social-links fade-in delay-3">
+        <a href="https://github.com/AndresqcDEV" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/andresqueiroz/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:andresqdc2006@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sobre -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title fade-in">
+        <h2>Sobre Mim</h2>
+      </div>
+      <div class="about-content fade-in delay-1">
+        <p>Sou André, estudante de Análise e Desenvolvimento de Sistemas, com 18 anos e uma paixão pela tecnologia. Desde pequeno, sempre me interessei por como as coisas funcionam e por criar soluções que podem facilitar o nosso dia a dia. Hoje, estou no caminho para me tornar um especialista em tecnologia, com foco em áreas como RPA, QA, e desenvolvimento de software. Este portfólio tem como objetivo mostrar um pouco do meu percurso acadêmico, projetos realizados e minhas ambições profissionais.</p>
+        
+        <div class="contact-buttons">
+          <a href="https://www.linkedin.com/in/andresqueiroz/" class="btn btn-primary" target="_blank">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+          <a href="https://github.com/AndresqcDEV" class="btn btn-outline" target="_blank">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="mailto:andresqdc2006@gmail.com" class="btn btn-primary">
+            <i class="fas fa-envelope"></i> E-mail
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Habilidades -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-title fade-in">
+        <h2>Habilidades</h2>
+      </div>
+      <div class="skills-container">
+        <div class="skill-item fade-in delay-1">
+          <div class="skill-icon"><i class="fab fa-python"></i></div>
+          <h3>Python</h3>
+        </div>
+        <div class="skill-item fade-in delay-1">
+          <div class="skill-icon"><i class="fas fa-robot"></i></div>
+          <h3>RPA</h3>
+        </div>
+        <div class="skill-item fade-in delay-2">
+          <div class="skill-icon"><i class="fab fa-js"></i></div>
+          <h3>JavaScript</h3>
+        </div>
+        <div class="skill-item fade-in delay-2">
+          <div class="skill-icon"><i class="fab fa-html5"></i></div>
+          <h3>HTML/CSS</h3>
+        </div>
+        <div class="skill-item fade-in delay-3">
+          <div class="skill-icon"><i class="fas fa-database"></i></div>
+          <h3>Banco de Dados</h3>
+        </div>
+        <div class="skill-item fade-in delay-3">
+          <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+          <h3>Cloud</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projetos -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title fade-in">
+        <h2>Projetos</h2>
+      </div>
+      <div class="projects-grid">
+        <!-- Projeto 1 -->
+        <div class="project-card fade-in delay-1">
+          <img src="https://via.placeholder.com/400x200?text=Quality+Study" alt="Quality Study" class="project-img">
+          <div class="project-content">
+            <h3>Quality Study</h3>
+            <p>Aplicativo para organização de estudos com calendário personalizado e inteligência de rotina. Em desenvolvimento com tecnologias modernas.</p>
+            <div class="project-links">
+              <a href="#" class="btn btn-primary">Ver Demo</a>
+              <a href="#" class="btn btn-outline">Código</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Projeto 2 -->
+        <div class="project-card fade-in delay-2">
+          <img src="https://via.placeholder.com/400x200?text=Banco+Python" alt="Banco Python" class="project-img">
+          <div class="project-content">
+            <h3>Banco Simples em Python</h3>
+            <p>Sistema completo de banco com depósito, saque e extrato. Código bem documentado para fins educacionais.</p>
+            <div class="project-links">
+              <a href="https://github.com/AndresqcDEV" target="_blank" class="btn btn-primary">Ver no GitHub</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Projeto 3 -->
+        <div class="project-card fade-in delay-3">
+          <img src="https://via.placeholder.com/400x200?text=Automa%C3%A7%C3%A3o+RPA" alt="Projeto RPA" class="project-img">
+          <div class="project-content">
+            <h3>Automação Comercial</h3>
+            <p>Solução RPA para automatizar processos repetitivos em sistemas empresariais, aumentando a produtividade em 70%.</p>
+            <div class="project-links">
+              <a href="#" class="btn btn-outline">Saiba Mais</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title fade-in">
+        <h2>Contato</h2>
+      </div>
+      <div class="contact-form fade-in delay-1">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Seu Nome" required>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Seu Email" required>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" placeholder="Sua Mensagem" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+        </form>
+        
+        <div class="contact-buttons" style="margin-top: 2rem;">
+          <a href="https://www.linkedin.com/in/andresqueiroz/" class="btn btn-outline" target="_blank">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+          <a href="https://github.com/AndresqcDEV" class="btn btn-outline" target="_blank">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="mailto:andresqdc2006@gmail.com" class="btn btn-outline">
+            <i class="fas fa-envelope"></i> E-mail
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="container">
+      <p class="footer-text">&copy; 2024 André Silva Queiroz. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Efeito de scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Animação ao rolar
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    fadeElements.forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
